@@ -6,7 +6,6 @@ let events = JSON.parse(localStorage.getItem(EVENTS_KEY) || '[]');
 let activeYear = new Date().getFullYear();
 let activeMonth = new Date().getMonth();
 
-// Task Management
 function save() {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
     updateCounts();
@@ -60,7 +59,6 @@ function renderTasks() {
     });
 }
 
-// Calendar Logic
 function renderCalendar(year, month) {
     const grid = document.getElementById('calendarGrid');
     const label = document.getElementById('monthLabel');
@@ -72,7 +70,6 @@ function renderCalendar(year, month) {
     label.textContent = first.toLocaleString(undefined, { month: 'long', year: 'numeric' });
     grid.innerHTML = '';
 
-    // Fill previous month days
     const prevLast = new Date(year, month, 0).getDate();
     for (let i = startDay - 1; i >= 0; i--) {
         const el = document.createElement('div');
@@ -81,7 +78,6 @@ function renderCalendar(year, month) {
         grid.appendChild(el);
     }
 
-    // Fill current month days
     for (let d = 1; d <= totalDays; d++) {
         const el = document.createElement('div');
         el.className = 'calendar-day';
@@ -90,7 +86,6 @@ function renderCalendar(year, month) {
         
         el.innerHTML = `<div class="date">${d}</div><div class="events"></div>`;
         
-        // Add click listener to add events
         el.addEventListener('click', () => {
             const text = prompt('Add event for ' + date.toDateString());
             if (text) {
@@ -123,7 +118,6 @@ function escapeHtml(s) {
     return s.replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": "&#39;" })[c]);
 }
 
-// Nav Listeners
 document.getElementById('prevMonth').addEventListener('click', () => {
     activeMonth--; if (activeMonth < 0) { activeMonth = 11; activeYear--; }
     renderCalendar(activeYear, activeMonth);
@@ -133,7 +127,6 @@ document.getElementById('nextMonth').addEventListener('click', () => {
     renderCalendar(activeYear, activeMonth);
 });
 
-// Init
 renderTasks();
 renderCalendar(activeYear, activeMonth);
 updateCounts();
