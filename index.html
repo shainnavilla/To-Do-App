@@ -1,20 +1,99 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width,initial-scale=1">
-	<title>To-Do App</title>
-	<link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Task Dashboard - To Do App</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-	<div class="container">
-		<h1>To-Do List</h1>
-		<form id="task-form">
-			<input id="task-input" type="text" placeholder="Add a new task" autocomplete="off" required>
-			<button type="submit">Add</button>
-		</form>
-		<ul id="task-list"></ul>
-	</div>
-	<script src="script.js"></script>
-</body>
-</html>
+
+<div class="dashboard">
+    <aside class="sidebar">
+        <div class="brand">MyTask</div>
+        <div class="sidebar-name">Navigation</div>
+        <div class="profile">
+            <div class="avatar"><img src="file:///C:/Users/Shainna/OneDrive/Pictures/123.jpg" alt="Profile photo"></div>
+            <div class="profile-info">
+                <div class="name">Shainna L. Villa</div>
+                <div class="email">shainna.villa@urios.edu.ph</div>
+            </div>
+        </div>
+        <nav class="side-nav">
+            <div class="side-section">
+                <h4>Filters</h4>
+                <a class="side-link" href="#"><span class="icon">☆</span>All Tasks</a>
+                <a class="side-link" href="#"><span class="icon">📅</span>Calendar</a>
+                <a class="side-link" href="#"><span class="icon">⏱️</span>Pending</a>
+                <a class="side-link" href="#"><span class="icon">✓</span>Completed</a>
+            </div>
+            <div class="side-section">
+                <h4>Categories</h4>
+                <ul class="category-list">
+                    <li><span class="cat-icon">📦</span>Work<span class="remove">×</span></li>
+                    <li><span class="cat-icon">👤</span>Personal<span class="remove">×</span></li>
+                    <li><span class="cat-icon">❤</span>Health<span class="remove">×</span></li>
+                    <li><span class="cat-icon">🛒</span>Shopping<span class="remove">×</span></li>
+                </ul>
+                <button class="add-category">+ Add Category</button>
+            </div>
+         </nav>
+    </aside>
+
+    <main class="main">
+         <header class="main-header">
+             <h1>Task Dashboard</h1>
+             <div class="header-actions">
+                 <button class="btn primary" id="addNewBtn">Add New Task</button>
+                 <div class="search">🔍</div>
+             </div>
+         </header>
+
+         <section class="cards-row">
+             <div class="card green"><h3>Daily Focus</h3><div class="progress">8 tasks today</div></div>
+             <div class="card orange"><h3>Workload</h3><div class="progress">32 active</div></div>
+             <div class="card purple"><h3>Personal</h3><div class="progress">5 upcoming</div></div>
+         </section>
+
+         <section class="task-controls">
+             <div class="task-input">
+                 <input type="text" id="taskInput" placeholder="Enter new task">
+                 <button class="btn" onclick="addTask()">Add Task</button>
+             </div>
+         </section>
+
+         <section class="task-list-section">
+             <h2>Tasks</h2>
+             <ul id="taskList" class="task-list"></ul>
+         </section>
+
+         <section class="summary-grid">
+            <div class="summary-card"><div id="pendingCount">0</div><br><small>Pending</small></div>
+            <div class="summary-card"><div id="completedCount">0</div><br><small>Completed</small></div>
+            <div class="summary-card">4<br><small>Overdue</small></div>
+            <div class="summary-card">12<br><small>New This Week</small></div>
+        </section>
+     </main>
+
+    <aside class="rightcol">
+         <div class="calendar-wrap">
+            <div class="calendar-controls">
+                <button id="prevMonth">‹</button>
+                <div class="month-label" id="monthLabel">August 2024</div>
+                <button id="nextMonth">›</button>
+            </div>
+            <div class="calendar-weekdays" aria-hidden="true">
+                <div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
+            </div>
+            <div class="calendar-grid" id="calendarGrid"></div>
+        </div>
+        <div class="upcoming">
+             <div class="calendar-header">Upcoming Tasks</div>
+             <ul class="events" id="eventsList"></ul>
+         </div>
+      </aside>
+ </div>
+
+ <script src="script.js"></script>
+ </body>
+ </html>
